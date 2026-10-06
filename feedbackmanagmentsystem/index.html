@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Management System</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Feedback Management System</h1>
+    <p>Customer Feedback & Analysis</p>
+  </header>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="container">
+
+    <div class="box login-box">
+
+      <h2>Login</h2>
+
+      <div class="roles">
+        <button onclick="setRole('customer')" id="customerRole">
+          Customer
+        </button>
+
+        <button onclick="setRole('admin')" id="adminRole">
+          Admin
+        </button>
+      </div>
+
+      <input type="email" id="loginEmail" placeholder="Email">
+
+      <input type="password" id="loginPassword" placeholder="Password">
+
+      <button onclick="login()">Login</button>
+
+      <p id="loginMsg"></p>
+
+      <p>
+        Don't have an account?
+        <a href="#" onclick="showSignup()">Signup</a>
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- SIGNUP PAGE -->
+  <div id="signupPage" class="container hide">
+
+    <div class="box login-box">
+
+      <h2>Create Account</h2>
+
+      <input type="text" id="signupName" placeholder="Full Name">
+
+      <input type="email" id="signupEmail" placeholder="Email">
+
+      <input type="password" id="signupPassword" placeholder="Password">
+
+      <select id="signupRole">
+        <option value="customer">Customer</option>
+      </select>
+
+      <button onclick="signup()">Create Account</button>
+
+      <p id="signupMsg"></p>
+
+      <p>
+        Already registered?
+        <a href="#" onclick="showLogin()">Login</a>
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- CUSTOMER DASHBOARD -->
+  <div id="customerPage" class="container hide">
+
+    <div class="box top">
+
+      <div>
+        <h2>Customer Dashboard</h2>
+        <p>Welcome, <b id="userName"></b></p>
+      </div>
+
+      <button onclick="logout()">Logout</button>
+
+    </div>
+
+
+    <div class="box">
+
+      <h2>Submit Feedback</h2>
+
+      <input
+        type="text"
+        id="subject"
+        placeholder="Product / Service"
+      >
+
+      <select id="category">
+
+        <option value="">Select Category</option>
+        <option>Product</option>
+        <option>Service</option>
+        <option>Support</option>
+        <option>Suggestion</option>
+
+      </select>
+
+
+      <select id="rating">
+
+        <option value="5">★★★★★ - Excellent</option>
+        <option value="4">★★★★ - Very Good</option>
+        <option value="3">★★★ - Good</option>
+        <option value="2">★★ - Poor</option>
+        <option value="1">★ - Very Poor</option>
+
+      </select>
+
+
+      <textarea
+        id="message"
+        placeholder="Write your feedback"
+      ></textarea>
+
+
+      <button class="success" onclick="addFeedback()">
+        Submit Feedback
+      </button>
+
+    </div>
+
+
+    <div class="box">
+
+      <h2>My Feedback</h2>
+
+      <input
+        type="text"
+        id="mySearch"
+        placeholder="Search my feedback..."
+        onkeyup="showMyFeedback()"
+      >
+
+      <div id="myFeedback"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminPage" class="container hide">
+
+    <div class="box top">
+
+      <div>
+        <h2>Admin Dashboard</h2>
+        <p>Feedback Management & Analysis</p>
+      </div>
+
+      <button onclick="logout()">Logout</button>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+      <div class="stat">
+        <h2 id="total">0</h2>
+        <p>Total Feedback</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="average">0</h2>
+        <p>Average Rating</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="positive">0</h2>
+        <p>Positive</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="suggestions">0</h2>
+        <p>Suggestions</p>
+      </div>
+
+    </div>
+
+
+    <!-- FEEDBACK MANAGEMENT -->
+
+    <div class="box">
+
+      <h2>Feedback Management</h2>
+
+      <input
+        type="text"
+        id="search"
+        placeholder="Search feedback..."
+        onkeyup="showAllFeedback()"
+      >
+
+
+      <select id="filter" onchange="showAllFeedback()">
+
+        <option value="All">All Categories</option>
+        <option value="Product">Product</option>
+        <option value="Service">Service</option>
+        <option value="Support">Support</option>
+        <option value="Suggestion">Suggestion</option>
+
+      </select>
+
+
+      <button class="danger" onclick="clearAll()">
+        Clear All
+      </button>
+
+    </div>
+
+
+    <div class="box">
+
+      <div id="allFeedback"></div>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
